@@ -1,1 +1,568 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Korpisoturit public REST API documentation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
+  <link rel="stylesheet" href="main.css">
+
+
+</head>
+<body>
+<div class="container is-fluid" style='padding-top: 20px;'>
+
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Korpisoturit public REST API documentation</h1>
+
+      </div>
+    </div>
+</section>
+
+</br>
+
+<article class="message is-info">
+  <div class="message-header">
+    <p>Tunnit services</p>
+    <span class="icon is-small"><i class="fa fa-hourglass-o"></i></span>
+  </div>
+  <div class="message-body">
+    <table class="table">
+  <thead>
+
+    <tr>
+      <th><strong>Method</strong></th>
+      <th><strong>URL</strong></th>
+      <th><strong>Example call return</strong></th>
+      <th><strong>HTTP response</strong></th>
+      <th><strong>HTTP error response</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+
+<tbody>
+<tr>
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/tois" target="_blank" rel="noopener noreferrer">/tunnit/tois</a><br/>
+<a href="http://www.korpisoturit.com/api/tunnit/tois/2017-07-06" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$date}</a><br/>
+<a href="http://www.korpisoturit.com/api/tunnit/tois/824" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}</a>
+</td>
+<td><pre>{
+    "status": "Workday on 2017-07-16 starts at 15 and ends 23",
+    "id": "832",
+    "shift_start": 15,
+    "shift_end": 23,
+    "href": {
+        "self": "http://korpisoturit.com/api/tunnit/tois/832",
+        "delete": "http://korpisoturit.com/api/tunnit/tois/832/delete",
+        "update": "http://korpisoturit.com/api/tunnit/tois/832/update"
+    },
+    "at_work": true
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Call returns status of Antti working today or not. <br/>Optional parameters: date, format YYYY-MM-DD. <br/>You can also request workday by id.</td>
+</tr>
+<tr>
+
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/list" target="_blank" rel="noopener noreferrer">/tunnit/list</a><br/>
+<a href="http://www.korpisoturit.com/api/tunnit/list/all" target="_blank" rel="noopener noreferrer">/tunnit/list/all</a><br/>
+<a href="http://www.korpisoturit.com/api/tunnit/list/20" target="_blank" rel="noopener noreferrer">/tunnit/list/{$limit}</a></td>
+<td><pre>{
+    "list_size": 2,
+    "workdays": [
+        {
+            "id": "842",
+            "date": "2017-07-30",
+            "shift_start": 7,
+            "shift_end": 15,
+            "at_work": true,
+            "href": "http://korpisoturit.com/api/tunnit/tois/id/842"
+        },
+        {
+            "id": "841",
+            "date": "2017-07-29",
+            "shift_start": 8,
+            "shift_end": 16,
+            "at_work": true,
+            "href": "http://korpisoturit.com/api/tunnit/tois/id/841"
+        }
+    ]
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Lists workdays, defaults to 100. <br/>Returns list size and array of workdays <br/>Can use 'all' or positive integer as limit. <br/>Sorts by date, most recent first.</td>
+</tr>
+
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/csv/2017-07-01/2017-07-30" target="_blank" rel="noopener noreferrer">/tunnit/csv/{$start-date}/{$end-date}</a></td>
+<td>Offers CSV file<pre>
+Subject,"Start Date","Start Time","End Date","End Time"
+"Töihin 08:00-16:00",2017-07-29,08:00,2017-07-29,16:00</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Should offer you CSV file to download, google calendar format friendly.<br/>
+Requires start date and end date.</td>
+</tr>  
+
+<td>POST</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/insert" target="_blank" rel="noopener noreferrer">/tunnit/insert</a></td>
+<td><pre>{
+    "date": "2017-07-07",
+    "id": "859",
+    "shift_start": 8,
+    "shift_end": 16,
+    "status": "New workday added"
+}</pre></td>
+<td>HTTP 201 CREATED</td>
+<td>HTTP 400 BAD REQUEST<br/>
+HTTP 401 Unauthorized</td>
+<td>Insert new work date. Requires client Secret key in header. Payload on body. If call is successfull returns id of created workday <pre>{
+  "date" : "2017-07-07",
+  "shift_start" : "08"  
+}</td>
+</tr>
+
+<td>DELETE</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/tois/842/delete" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/delete</a></td>
+<td><pre>{
+    "id": 842,
+    "status": "Workday deleted"
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST<br/>
+HTTP 401 Unauthorized</td>
+<td>Removes workday. Workday id is required path variable.<br/>Requires client Secret key in header. </td>
+</tr>
+
+<td>POST</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/tois/842/update" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/update</a></td>
+<td><pre>{
+    "id": 832,
+    "status": "Workday updated"
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST<br/>
+HTTP 401 Unauthorized</td>
+<td>Updates workday. Workday id is required path variable.<br/>Requires client Secret key in header. Payload in body<pre>{
+  "date" : "2017-07-07",
+  "shift_start" : "08"  
+}</pre></td>
+</tr>
+
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/tunnit/tois/next" target="_blank" rel="noopener noreferrer">/tunnit/tois/next</a></td>
+<td><pre>{
+    "date": "2017-08-21",
+    "status": "My next work day is 2017-08-21. Busy between 7 and 15",
+    "id": "862",
+    "shift_start": 7,
+    "shift_end": 15,
+    "href": {
+        "self": "http://korpisoturit.com/api/tunnit/tois/862",
+        "delete": "http://korpisoturit.com/api/tunnit/tois/862/delete",
+        "update": "http://korpisoturit.com/api/tunnit/tois/862/update"
+    },
+    "at_work": true
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Finds out when my next workday is and displays work day info</td>
+</tr>
+
+
+</tbody>
+</table>
+</div>
+</article>
+
+<article class="message is-primary">
+  <div class="message-header">
+    <p>Miscellaneous services - Week</p>
+    <span class="icon is-small"><i class="fa fa-calendar"></i></span>
+  </div>
+  <div class="message-body">
+    <table class="table">
+  <thead>
+
+    <tr>
+      <th><strong>Method</strong></th>
+      <th><strong>URL</strong></th>
+      <th><strong>Example call return</strong></th>
+      <th><strong>HTTP response</strong></th>
+      <th><strong>HTTP error response</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+
+<tr>
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/misc/week_number" target="_blank" rel="noopener noreferrer">/misc/week_number</a></td>
+<td><pre>{
+    "current_date": "2017-06-30",
+    "week_number": "26",
+    "week_start": "2017-06-26",
+    "week_end": "2017-07-02"
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>????</td>
+<td>Call returns ongoing week number</td>
+</tr>
+
+<tr>
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/misc/week_number/26" target="_blank" rel="noopener noreferrer">/misc/week_number/$week</a><br/>
+<a href="http://www.korpisoturit.com/api/misc/week_number/26/2017" target="_blank" rel="noopener noreferrer">/misc/week_number/$week/$year</a></td>
+<td><pre>{
+    "current_date": "2017-06-30",
+    "week_number": "26",
+    "week_start": "2017-06-26",
+    "week_end": "2017-07-02",
+    "days_to_requested_week_start": "-4"
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Call returns week number from user input. <br/>Optional parameters, year. <br/>Defaults to current year.</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+</article>
+
+<article class="message is-danger">
+  <div class="message-header">
+    <p>Football fixtures</p>
+    <span class="icon"><i class="fa fa-futbol-o"></i></span>
+  </div>
+  <div class="message-body">
+      <table class="table">
+  <thead>
+
+    <tr>
+      <th><strong>Method</strong></th>
+      <th><strong>URL</strong></th>
+      <th><strong>Example call return</strong></th>
+      <th><strong>HTTP response</strong></th>
+      <th><strong>HTTP error response</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+<tr>
+<td>GET</td>
+<td><a href="http://korpisoturit.com/api/football/leagues" target="_blank" rel="noopener noreferrer">/football/leagues</a></td>
+<td><pre>{
+    "last_updated": "2017-07-16",
+    "leagues": {
+        "Premier league 2017-18": "premier"
+    }
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>???</td>
+<td>Displays leagues available from REST api, data courtesy of <a href="http://api.football-data.org/index" target="_blank" rel="noopener noreferrer">football-data.org</a><br/>Format league name : request name</pre></td>
+</tr>
+
+<tr>
+<td>GET</td>
+<td><a href="http://korpisoturit.com/api/football/fixtures/premier" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}</a><br/>
+<a href="http://korpisoturit.com/api/football/fixtures/premier/2017-08-12" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/{$date}</a><br/>
+<a href="http://korpisoturit.com/api/football/fixtures/premier/all" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/all</a><br/></td>
+<td><pre><pre>
+    "date": "2017-08-12",
+    "matches": [
+        {
+            "match": {
+                "home": "Everton FC",
+                "away": "Stoke City FC",
+                "result": {
+                    "home": 0,
+                    "away": 0
+                },
+                "date": "2017-08-12",
+                "start_time": "14:00",
+                "status": "SCHEDULED"
+            }
+        }
+    ],
+    "match_count": 10
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>Returns matches on current day, requested date or all leagues matches<br/>League is mandatory, other parameters are optional.</td>
+</tr>
+
+
+</tbody>
+</table>
+  </div>
+</article>
+
+
+<article class="message is-warning">
+  <div class="message-header">
+    <p>Miscellaneous services - Info</p>
+    <span class="icon"><i class="fa fa-random"></i></span>
+  </div>
+  <div class="message-body">
+      <table class="table">
+  <thead>
+
+    <tr>
+      <th><strong>Method</strong></th>
+      <th><strong>URL</strong></th>
+      <th><strong>Example call return</strong></th>
+      <th><strong>HTTP response</strong></th>
+      <th><strong>HTTP error response</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+<tr>
+<td>GET</td>
+<td><a href="http://www.korpisoturit.com/api/misc/info" target="_blank" rel="noopener noreferrer">/misc/info</a></td>
+<td><pre>{
+    "version": "0.0.8",
+    "name": "Korpisoturit REST API",
+    "api_documentation_url": "http://korpisoturit.com/api.html",
+    "last_updated": "2017-07-03"
+}</pre></td>
+<td>HTTP 200 OK</td>
+<td>???</td>
+<td>Displays application info</td>
+</tr>
+
+
+</tbody>
+</table>
+  </div>
+</article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-09-04, Version 0.3.5 -> 0.3.6</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Added better logging for some controllers.<br/>
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Moved api documentation to github.<br/>
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-09-04, Version 0.3.4 -> 0.3.5</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> moved /tunnit/next to tunnit/tois/next for consistency in API. <br/>
+  <span class="tag is-primary"><span class="icon is-small"><i class="fa fa-calendar"></i></span> Week</span> Fixed logic errors <br/>
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Added better logging for some controllers.<br/>
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-08-30, Version 0.3.3 -> 0.3.4</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Fixed issue with request fixtures/{$league}/all <br/>
+
+  </div>
+</article>
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-08-26, Version 0.3.2 -> 0.3.3</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added support for Champions league 2017-2018.<br/>
+	<span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Refactored some code, fixed few controller bugs.<br/>
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-08-12, Version 0.3.1 -> 0.3.2</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added results array when requesting matches with date.<br/>
+  </div>
+</article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-08-11, Version 0.3.0 -> 0.3.1</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Fixed issue with start times and timezones. Added summertime detection.<br/>
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-08-02, Version 0.2.3 -> 0.3.0</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Migrated from <a href="https://github.com/jacwright/RestServer" target="_blank" rel="noopener noreferrer">Jacwright RESTServer v1.1.0</a> to <a href="https://www.slimframework.com/" target="_blank" rel="noopener noreferrer">Slim Framework 3</a>.<br/> 
+  Old api will co-exists at /old_api/ but will not recieve further updates.<br/>
+  All features should function as normal.<br/>
+
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-31, Version 0.2.2 -> 0.2.3</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Added /next method, tells when my next work day is<br/>
+
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-25, Version 0.2.1.1 -> 0.2.2</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Improved /csv/{$date_from}/{$date_to} logic and date handling<br/>
+
+
+  </div>
+</article>
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-21, Version 0.2.1 -> 0.2.1.1</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Fixed issue fixtures/{league} not returning empty array if no matches on current / requested date<br/>
+
+
+  </div>
+</article>
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-16, Version 0.2.0 -> 0.2.1</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added results to current day matches<br/>
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Fixed logic handler when requesting dates/leagues <br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Added /{id}/update method<br/>
+
+  </div>
+</article>
+
+
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-15, Version 0.1.4 -> 0.2.0</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added football controller<br/>
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added endpoint for supported leagues for football /football/leagues <br/>
+  <span class="tag is-danger"><span class="icon is-small"><i class="fa fa-futbol-o"></i></span> Football</span> Added enpoint for football fixtures /football/fixtures/{$league} <br/>
+
+  </div>
+</article>
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-14, Version 0.1.3 -> 0.1.4</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Changed /insert call HTTP return status: 200 OK -> 201 CREATED. <br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> /insert now returns id of created workday<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Fixed SQL injection on /insert.<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Updated {id}/delete method<br/>
+
+  </div>
+</article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-08, Version 0.1.2 -> 0.1.3</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Fixed logic error when workday is starting but not yet started.<br/>
+
+
+  </div>
+</article>
+
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-07-07, Version 0.1.1 -> 0.1.2</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-primary"><span class="icon is-small"><i class="fa fa-calendar"></i></span> Week</span> Fixed logic error on week request call, if year is empty and week is gone, defaults to next year.<br/>
+  <span class="tag is-warning"><span class="icon is-small"><i class="fa fa-random"></i></span> Info</span> Moved REST info from /tunnit to own controller at /misc, REST info now responds at /misc/info <br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Fixed endpoints, added links array, now gives self and delete link<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Changed /$id/delete method from POST -> DELETE<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Fixed CSV formating<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Fixed few SQL injections<br/>
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Added status field to response when work day is requested and not found with date<br/>
+
+  </div>
+</article>
+<br/>
+</div>
+
+
+<section class="hero is-dark is-bold" style='padding-top: 20px;'>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        #Korpisoturit
+      </h1>
+      <h2 class="subtitle">
+        asdfasdfa fasdfasdf kissat koiria
+      </h2>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
