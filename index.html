@@ -304,7 +304,7 @@ HTTP 401 Unauthorized</td>
 
 <article class="message is-warning">
   <div class="message-header">
-    <p>Miscellaneous services - Info</p>
+    <p>Miscellaneous services</p>
     <span class="icon"><i class="fa fa-random"></i></span>
   </div>
   <div class="message-body">
@@ -334,11 +334,51 @@ HTTP 401 Unauthorized</td>
 <td>Displays application info</td>
 </tr>
 
+<tr>
+<td>GET</td>
+<td><a href="http://korpisoturit.com/api/misc/future_races" target="_blank" rel="noopener noreferrer">/misc/future_races</a></td>
+<td><pre>{
+    "event_count": 1,
+    "data": [
+        {
+            "event": {
+                "trackName": "Kouvola",
+                "country": "FI",
+                "trackNumber": "04",
+                "meetDate": "2017-09-21",
+                "mainPool": "T4",
+                "firstRaceStart": "18:10",
+                "dayShort": "To 21.09.",
+                "singleLine": "18:10 Kouvola (04) T4"
+            }
+        }
+        ]
+      }</pre></td>
+<td>HTTP 200 OK</td>
+<td>???</td>
+<td>End point returns upcoming trot / gallop events from veikkaus.fi/toto</td>
+</tr>
+
 
 </tbody>
 </table>
   </div>
 </article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-09-20, Version 0.3.7 -> 0.3.8</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Improved logging<br/>
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-paw"></i></span> Horse</span> Added new controller controller, /misc/future_races to display future trot and gallop events from Veikkaus.<br/>
+
+
+  </div>
+</article>
+
+
 
 <article class="message is-success">
   <div class="message-header">
