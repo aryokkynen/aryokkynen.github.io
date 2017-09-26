@@ -123,7 +123,8 @@ Requires start date and end date.</td>
 HTTP 401 Unauthorized</td>
 <td>Insert new work date. Requires client Secret key in header. Payload on body. If call is successfull returns id of created workday <pre>{
   "date" : "2017-07-07",
-  "shift_start" : "08"  
+  "shift_start" : "08",
+  "shift_end" : "16"  
 }</td>
 </tr>
 
@@ -367,14 +368,23 @@ HTTP 401 Unauthorized</td>
 
 <article class="message is-success">
   <div class="message-header">
+    <p>Changelog. Last updated: 2017-09-26, Version 0.3.8 -> 0.3.9</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-info"><span class="icon is-small"><i class="fa fa-hourglass-o"></i></span> Tunnit</span> Added support for different length of shifts. Altered database schema, added new column shift_end. <br/>
+  </div>
+</article>
+
+
+<article class="message is-success">
+  <div class="message-header">
     <p>Changelog. Last updated: 2017-09-20, Version 0.3.7 -> 0.3.8</p>
     <span class="icon"><i class="fa fa-list-alt"></i></span>
   </div>
   <div class="message-body">
   <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Improved logging<br/>
   <span class="tag is-warning"><span class="icon is-small"><i class="fa fa-paw"></i></span> Horse</span> Added new controller, /misc/future_races to display future trot and gallop events from Veikkaus.<br/>
-
-
   </div>
 </article>
 
