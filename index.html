@@ -338,7 +338,7 @@ HTTP 401 Unauthorized</td>
 
 <tr>
 <td>GET</td>
-<td><a href="http://korpisoturit.com/api/misc/future_races" target="_blank" rel="noopener noreferrer">/misc/future_races</a></td>
+<td><a href="http://korpisoturit.com/api/misc/horses/active" target="_blank" rel="noopener noreferrer">/misc/horses/{request}</a></td>
 <td><pre>{
     "event_count": 1,
     "data": [
@@ -357,8 +357,8 @@ HTTP 401 Unauthorized</td>
     ]
 }</pre></td>
 <td>HTTP 200 OK</td>
-<td>???</td>
-<td>End point returns upcoming trot / gallop events from veikkaus.fi/toto</td>
+<td>HTTP 400 BAD REQUEST</td>
+<td>End point for today/active/future trot / gallop events from veikkaus.fi/toto</td>
 </tr>
 
 
@@ -366,6 +366,17 @@ HTTP 401 Unauthorized</td>
 </table>
   </div>
 </article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2017-10-27, Version 0.3.9 -> 0.4.0</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+<span class="tag is-warning"><span class="icon is-small"><i class="fa fa-paw"></i></span> Horse</span> Modified horse controller, now responds /misc/horses/{request}, added support for active races and today's races<br/>
+  </div>
+</article>
+
 
 <article class="message is-success">
   <div class="message-header">
