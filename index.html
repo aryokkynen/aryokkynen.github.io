@@ -46,9 +46,9 @@
 <tbody>
 <tr>
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/tois" target="_blank" rel="noopener noreferrer">/tunnit/tois</a><br/>
-<a href="http://www.korpisoturit.com/api/tunnit/tois/2017-07-06" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$date}</a><br/>
-<a href="http://www.korpisoturit.com/api/tunnit/tois/824" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}</a>
+<td><a href="https://www.korpisoturit.com/api/tunnit/tois" target="_blank" rel="noopener noreferrer">/tunnit/tois</a><br/>
+<a href="https://www.korpisoturit.com/api/tunnit/tois/2017-07-06" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$date}</a><br/>
+<a href="https://www.korpisoturit.com/api/tunnit/tois/824" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}</a>
 </td>
 <td><pre>{
     "status": "Workday on 2017-07-16 starts at 15 and ends 23",
@@ -56,9 +56,9 @@
     "shift_start": 15,
     "shift_end": 23,
     "href": {
-        "self": "http://korpisoturit.com/api/tunnit/tois/832",
-        "delete": "http://korpisoturit.com/api/tunnit/tois/832/delete",
-        "update": "http://korpisoturit.com/api/tunnit/tois/832/update"
+        "self": "https://korpisoturit.com/api/tunnit/tois/832",
+        "delete": "https://korpisoturit.com/api/tunnit/tois/832/delete",
+        "update": "https://korpisoturit.com/api/tunnit/tois/832/update"
     },
     "at_work": true
 }</pre></td>
@@ -69,9 +69,9 @@
 <tr>
 
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/list" target="_blank" rel="noopener noreferrer">/tunnit/list</a><br/>
-<a href="http://www.korpisoturit.com/api/tunnit/list/all" target="_blank" rel="noopener noreferrer">/tunnit/list/all</a><br/>
-<a href="http://www.korpisoturit.com/api/tunnit/list/20" target="_blank" rel="noopener noreferrer">/tunnit/list/{$limit}</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/list" target="_blank" rel="noopener noreferrer">/tunnit/list</a><br/>
+<a href="https://www.korpisoturit.com/api/tunnit/list/all" target="_blank" rel="noopener noreferrer">/tunnit/list/all</a><br/>
+<a href="https://www.korpisoturit.com/api/tunnit/list/20" target="_blank" rel="noopener noreferrer">/tunnit/list/{$limit}</a></td>
 <td><pre>{
     "list_size": 2,
     "workdays": [
@@ -81,7 +81,7 @@
             "shift_start": 7,
             "shift_end": 15,
             "at_work": true,
-            "href": "http://korpisoturit.com/api/tunnit/tois/id/842"
+            "href": "https://korpisoturit.com/api/tunnit/tois/id/842"
         },
         {
             "id": "841",
@@ -89,7 +89,7 @@
             "shift_start": 8,
             "shift_end": 16,
             "at_work": true,
-            "href": "http://korpisoturit.com/api/tunnit/tois/id/841"
+            "href": "https://korpisoturit.com/api/tunnit/tois/id/841"
         }
     ]
 }</pre></td>
@@ -99,7 +99,7 @@
 </tr>
 
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/csv/2017-07-01/2017-07-30" target="_blank" rel="noopener noreferrer">/tunnit/csv/{$start-date}/{$end-date}</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/csv/2017-07-01/2017-07-30" target="_blank" rel="noopener noreferrer">/tunnit/csv/{$start-date}/{$end-date}</a></td>
 <td>Offers CSV file<pre>
 Subject,"Start Date","Start Time","End Date","End Time"
 "Töihin 08:00-16:00",2017-07-29,08:00,2017-07-29,16:00</pre></td>
@@ -110,7 +110,7 @@ Requires start date and end date.</td>
 </tr>  
 
 <td>POST</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/insert" target="_blank" rel="noopener noreferrer">/tunnit/insert</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/insert" target="_blank" rel="noopener noreferrer">/tunnit/insert</a></td>
 <td><pre>{
     "date": "2017-07-07",
     "id": "859",
@@ -129,7 +129,7 @@ HTTP 401 Unauthorized</td>
 </tr>
 
 <td>DELETE</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/tois/842/delete" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/delete</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/tois/842/delete" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/delete</a></td>
 <td><pre>{
     "id": 842,
     "status": "Workday deleted"
@@ -141,7 +141,7 @@ HTTP 401 Unauthorized</td>
 </tr>
 
 <td>POST</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/tois/842/update" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/update</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/tois/842/update" target="_blank" rel="noopener noreferrer">/tunnit/tois/{$id}/update</a></td>
 <td><pre>{
     "id": 832,
     "status": "Workday updated"
@@ -157,7 +157,7 @@ HTTP 401 Unauthorized</td>
 </tr>
 
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/tunnit/tois/next" target="_blank" rel="noopener noreferrer">/tunnit/tois/next</a></td>
+<td><a href="https://www.korpisoturit.com/api/tunnit/tois/next" target="_blank" rel="noopener noreferrer">/tunnit/tois/next</a></td>
 <td><pre>{
     "date": "2017-08-21",
     "status": "My next work day is 2017-08-21. Busy between 7 and 15",
@@ -165,9 +165,9 @@ HTTP 401 Unauthorized</td>
     "shift_start": 7,
     "shift_end": 15,
     "href": {
-        "self": "http://korpisoturit.com/api/tunnit/tois/862",
-        "delete": "http://korpisoturit.com/api/tunnit/tois/862/delete",
-        "update": "http://korpisoturit.com/api/tunnit/tois/862/update"
+        "self": "https://korpisoturit.com/api/tunnit/tois/862",
+        "delete": "https://korpisoturit.com/api/tunnit/tois/862/delete",
+        "update": "https://korpisoturit.com/api/tunnit/tois/862/update"
     },
     "at_work": true
 }</pre></td>
@@ -203,7 +203,7 @@ HTTP 401 Unauthorized</td>
 
 <tr>
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/misc/week_number" target="_blank" rel="noopener noreferrer">/misc/week_number</a></td>
+<td><a href="https://www.korpisoturit.com/api/misc/week_number" target="_blank" rel="noopener noreferrer">/misc/week_number</a></td>
 <td><pre>{
     "current_date": "2017-06-30",
     "week_number": "26",
@@ -217,8 +217,8 @@ HTTP 401 Unauthorized</td>
 
 <tr>
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/misc/week_number/26" target="_blank" rel="noopener noreferrer">/misc/week_number/$week</a><br/>
-<a href="http://www.korpisoturit.com/api/misc/week_number/26/2017" target="_blank" rel="noopener noreferrer">/misc/week_number/$week/$year</a></td>
+<td><a href="https://www.korpisoturit.com/api/misc/week_number/26" target="_blank" rel="noopener noreferrer">/misc/week_number/$week</a><br/>
+<a href="https://www.korpisoturit.com/api/misc/week_number/26/2017" target="_blank" rel="noopener noreferrer">/misc/week_number/$week/$year</a></td>
 <td><pre>{
     "current_date": "2017-06-30",
     "week_number": "26",
@@ -256,7 +256,7 @@ HTTP 401 Unauthorized</td>
   </thead>
 <tr>
 <td>GET</td>
-<td><a href="http://korpisoturit.com/api/football/leagues" target="_blank" rel="noopener noreferrer">/football/leagues</a></td>
+<td><a href="https://korpisoturit.com/api/football/leagues" target="_blank" rel="noopener noreferrer">/football/leagues</a></td>
 <td><pre>{
     "last_updated": "2017-07-16",
     "leagues": {
@@ -265,14 +265,14 @@ HTTP 401 Unauthorized</td>
 }</pre></td>
 <td>HTTP 200 OK</td>
 <td>???</td>
-<td>Displays leagues available from REST api, data courtesy of <a href="http://api.football-data.org/index" target="_blank" rel="noopener noreferrer">football-data.org</a><br/>Format league name : request name</pre></td>
+<td>Displays leagues available from REST api, data courtesy of <a href="https://api.football-data.org/index" target="_blank" rel="noopener noreferrer">football-data.org</a><br/>Format league name : request name</pre></td>
 </tr>
 
 <tr>
 <td>GET</td>
-<td><a href="http://korpisoturit.com/api/football/fixtures/premier" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}</a><br/>
-<a href="http://korpisoturit.com/api/football/fixtures/premier/2017-08-12" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/{$date}</a><br/>
-<a href="http://korpisoturit.com/api/football/fixtures/premier/all" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/all</a><br/></td>
+<td><a href="https://korpisoturit.com/api/football/fixtures/premier" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}</a><br/>
+<a href="https://korpisoturit.com/api/football/fixtures/premier/2017-08-12" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/{$date}</a><br/>
+<a href="https://korpisoturit.com/api/football/fixtures/premier/all" target="_blank" rel="noopener noreferrer">/football/fixtures/{$league}/all</a><br/></td>
 <td><pre><pre>
     "date": "2017-08-12",
     "matches": [
@@ -324,11 +324,11 @@ HTTP 401 Unauthorized</td>
   </thead>
 <tr>
 <td>GET</td>
-<td><a href="http://www.korpisoturit.com/api/misc/info" target="_blank" rel="noopener noreferrer">/misc/info</a></td>
+<td><a href="https://www.korpisoturit.com/api/misc/info" target="_blank" rel="noopener noreferrer">/misc/info</a></td>
 <td><pre>{
     "version": "0.0.8",
     "name": "Korpisoturit REST API",
-    "api_documentation_url": "http://korpisoturit.com/api.html",
+    "api_documentation_url": "https://korpisoturit.com/api.html",
     "last_updated": "2017-07-03"
 }</pre></td>
 <td>HTTP 200 OK</td>
@@ -338,7 +338,7 @@ HTTP 401 Unauthorized</td>
 
 <tr>
 <td>GET</td>
-<td><a href="http://korpisoturit.com/api/misc/horses/active" target="_blank" rel="noopener noreferrer">/misc/horses/{request}</a></td>
+<td><a href="https://korpisoturit.com/api/misc/horses/active" target="_blank" rel="noopener noreferrer">/misc/horses/{request}</a></td>
 <td><pre>{
     "event_count": 1,
     "data": [
@@ -366,6 +366,17 @@ HTTP 401 Unauthorized</td>
 </table>
   </div>
 </article>
+
+<article class="message is-success">
+  <div class="message-header">
+    <p>Changelog. Last updated: 2018-03-14, Version 0.4.1 -> 0.4.2</p>
+    <span class="icon"><i class="fa fa-list-alt"></i></span>
+  </div>
+  <div class="message-body">
+  <span class="tag is-black"><span class="icon is-small"><i class="fa fa-cog"></i></span> General</span> Added HTTPS support. Created forward rules from HTTP -> HTTPS</br>
+  </div>
+</article>
+
 
 <article class="message is-success">
   <div class="message-header">
